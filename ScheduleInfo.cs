@@ -1,30 +1,43 @@
-﻿namespace TokenSchedule
+﻿namespace TokenSchedule;
+
+public class ScheduleInfo
 {
-    public class ScheduleInfo
+    private readonly IList<SingleRow> data;
+
+    public ScheduleInfo(IEnumerable<SingleRow> data)
     {
-        private readonly IEnumerable<SingleRow> rows;
-        public ScheduleInfo(IEnumerable<SingleRow> data)
+        if (data == null)
         {
-            ValidateData(data);
-            rows = data;
+            throw new ArgumentNullException(nameof(data));
         }
-        public SingleRow GetTge() => rows.FirstOrDefault()!;
-        public IEnumerable<SingleRow> GetRest() => IsOnlyTge() ? Array.Empty<SingleRow>() : rows.Skip(1);
-        public bool IsOnlyTge() => rows.Count() == 1;
-        internal static void ValidateData(IEnumerable<SingleRow> data)
-        {
-            if (data == null) throw new ArgumentNullException(nameof(data));
-            if (!data.Any()) throw new ArgumentException("Data must Have elemets");
-            if (data.Sum(x => x.Ratio) != 1) throw new ArgumentException("Ratio Sum Need to be 1");
-            if (data.Min(x => x.Ratio) <= 0) throw new ArgumentException("Ratio Must be Posative");
-            if (data.Any(x => x.EndTime != null && x.StartTime > x.EndTime)) throw new ArgumentException("EndTime Must be greater than StartTime");
-            if (data.FirstOrDefault()!.StartTime == data.Min(x => x.StartTime)) throw new ArgumentException("First Element Must be TGE - First");
-        }
+
+        var dataList = data.ToList();
+
+        ValidateData(dataList);
+        this.data = dataList;
     }
-    public class SingleRow
+
+    public SingleRow GetTge() => data.First();
+
+    public IEnumerable<SingleRow> GetRest() => IsOnlyTge() ? Enumerable.Empty<SingleRow>() : data.Skip(1);
+
+    public bool IsOnlyTge() => data.Count == 1;
+
+    private static void ValidateData(IList<SingleRow> data)
     {
-        public DateTime StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
-        public decimal Ratio { get; set; }
+        if (!data.Any())
+        {
+            throw new ArgumentException("Data must have elements.", nameof(data));
+        }
+
+        if (data.Sum(x => x.Ratio) != 1)
+        {
+            throw new ArgumentException("The sum of the ratios must be 1.", nameof(data));
+        }
+
+        if (data.First().StartTime != data.Min(x => x.StartTime))
+        {
+            throw new ArgumentException("The first element must be the TGE (Token Generation Event).", nameof(data));
+        }
     }
 }
