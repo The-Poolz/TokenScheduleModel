@@ -1,4 +1,4 @@
-﻿namespace TokenSchedule;
+﻿namespace TokenSchedule.src;
 
 public class SingleRow
 {
@@ -10,7 +10,7 @@ public class SingleRow
 
         if (EndTime.HasValue && StartTime >= EndTime.Value)
         {
-            throw new ArgumentException("End time must be greater than to start time.", nameof(startTime));
+            throw new ArgumentException("End time must be greater than start time.", nameof(startTime));
         }
         if (Ratio <= 0)
         {

@@ -1,4 +1,4 @@
-﻿namespace TokenSchedule;
+﻿namespace TokenSchedule.src;
 
 public class ScheduleInfo
 {
