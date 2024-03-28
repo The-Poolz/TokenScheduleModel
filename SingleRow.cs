@@ -4,20 +4,21 @@ public class SingleRow
 {
     public SingleRow(decimal ratio, DateTime startTime, DateTime? endTime = null)
     {
-        if (EndTime.HasValue && StartTime > EndTime.Value)
+        Ratio = ratio;
+        StartTime = startTime;
+        EndTime = endTime;
+
+        if (EndTime.HasValue && StartTime >= EndTime.Value)
         {
-            throw new ArgumentException("End time must be greater than or equal to start time.", nameof(StartTime));
+            throw new ArgumentException("End time must be greater than to start time.", nameof(startTime));
         }
         if (Ratio <= 0)
         {
             throw new ArgumentException("Ratio must be positive.", nameof(ratio));
         }
-        Ratio = ratio;
-        StartTime = startTime;
-        EndTime = endTime;
     }
 
-    public decimal Ratio { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime? EndTime { get; set; }
+    public decimal Ratio { get; }
+    public DateTime StartTime { get; }
+    public DateTime? EndTime { get; }
 }
