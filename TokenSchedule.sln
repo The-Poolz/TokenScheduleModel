@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenSchedule", "TokenSchedule.csproj", "{DA81B779-6F89-45B8-A028-3288705930A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testTokenSchedule", "..\testTokenSchedule\testTokenSchedule.csproj", "{BD642C29-BA98-4EF1-A71A-D85A5BA8C547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DA81B779-6F89-45B8-A028-3288705930A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA81B779-6F89-45B8-A028-3288705930A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA81B779-6F89-45B8-A028-3288705930A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD642C29-BA98-4EF1-A71A-D85A5BA8C547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD642C29-BA98-4EF1-A71A-D85A5BA8C547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD642C29-BA98-4EF1-A71A-D85A5BA8C547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD642C29-BA98-4EF1-A71A-D85A5BA8C547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
